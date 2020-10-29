@@ -1,0 +1,23 @@
+{
+  "name": "@dnlup/seeq",
+  "version": "1.0.0-0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bench": "node bench.js > bench.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnlup/seeq.git"
+  },
+  "author": "Daniele Belardi <dwon.dnl@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dnlup/seeq/issues"
+  },
+  "homepage": "https://github.com/dnlup/seeq#readme",
+  "devDependencies": {
+    "benchmark": "^2.1.4"
+  }
+}
