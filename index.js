@@ -12,7 +12,7 @@ class Seeq {
     this[kStart] = 0
     this[kEnd] = 0
     this[kSize] = size
-    this[kQueue] = Array(this[kSize])
+    this[kQueue] = []
   }
 
   get size () {
@@ -36,10 +36,10 @@ class Seeq {
   }
 
   pop () {
-    if (this[kStart] === this[kEnd]) {
-      return
-    } else if (this[kStart] === this[kSize]) {
+    if (this[kStart] === this[kSize]) {
       this[kStart] = 0
+    } else if (this[kStart] === this[kEnd]) {
+      return
     }
     const value = this[kQueue][this[kStart]]
     this[kQueue][this[kStart]] = null

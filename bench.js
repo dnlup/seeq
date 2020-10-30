@@ -6,9 +6,11 @@ const Seeq = require('./')
 const suite = new Benchmark.Suite()
 const size = 16
 
+const s = new Seeq(size)
+
 suite
   .add('Array.prototype.splice + Array.prototype[Symbol.iterator]', function array () {
-    const a = Array(size)
+    const a = []
     for (let i = 0; i < size; i++) {
       a.push(i)
     }
@@ -17,7 +19,6 @@ suite
     }
   })
   .add('Seeq.prototype[Symbol.iterator]', function seeq () {
-    const s = new Seeq(size)
     for (let i = 0; i < size; i++) {
       s.push(i)
     }
