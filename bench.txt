@@ -1,2 +1,2 @@
-Array.prototype.splice + Array.prototype[Symbol.iterator] x 319,019 ops/sec ±0.62% (90 runs sampled)
-Sique.prototype[Symbol.iterator] x 363,602 ops/sec ±0.47% (92 runs sampled)
+Array.prototype.splice + Array.prototype[Symbol.iterator] x 4,687,618 ops/sec ±0.88% (89 runs sampled)
+Seeq.prototype[Symbol.iterator] x 4,960,616 ops/sec ±0.58% (94 runs sampled)
