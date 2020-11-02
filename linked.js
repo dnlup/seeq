@@ -7,7 +7,7 @@ const symbols = {
   kOverflowed: Symbol('kOverflowed'),
   kSize: Symbol('kSize'),
   kQueue: Symbol('kQueue'),
-  kPop: Symbol('kPop'),
+  kPop: Symbol('kPop')
 }
 
 const {
@@ -16,9 +16,7 @@ const {
   kWriteCursor,
   kOverflowed,
   kSize,
-  kQueue,
-  kPop,
-  kCursor
+  kPop
 } = symbols
 
 class Node {
@@ -29,6 +27,18 @@ class Node {
   }
 }
 
+function initCircularLinkedList (instance) {
+  let last = instance[kHead]
+  for (let i = 1; i < instance[kSize]; i++) {
+    const node = new Node(i, null)
+    last.next = node
+    last = node
+    if (i === instance[kSize] - 1) {
+      node.next = instance[kHead]
+    }
+  }
+}
+
 class Seeq {
   constructor (size) {
     this[kHead] = new Node(0, null)
@@ -36,18 +46,7 @@ class Seeq {
     this[kWriteCursor] = this[kHead]
     this[kOverflowed] = false
     this[kSize] = size
-
-    let last = this[kHead]
-    // Initialize the circular linked list used
-    // as a queue
-    for (let i = 1; i < size; i++) {
-      const node = new Node(i, null)
-      last.next = node
-      last = node
-      if (i === size - 1) {
-        node.next = this[kHead] 
-      }
-    }
+    initCircularLinkedList(this)
   }
 
   get size () {
@@ -81,7 +80,7 @@ class Seeq {
   next () {
     const done = this.done
     return {
-      value: done? undefined : this[kPop](),
+      value: done ? undefined : this[kPop](),
       done
     }
   }

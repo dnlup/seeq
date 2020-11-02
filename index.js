@@ -13,8 +13,6 @@ class Seeq {
     this[kEnd] = 0
     this[kSize] = size
     this[kQueue] = []
-//     this[kQueue] = new Map(Array(size).fill(null).map((v, i) => [i. v]))
-//     this[kQueue] = {}
   }
 
   get size () {
@@ -51,10 +49,12 @@ class Seeq {
 
   next () {
     const done = this[kStart] === this[kEnd]
-    return done ? { done } : {
-      value: this.pop(),
-      done
-    }
+    return done
+      ? { done }
+      : {
+          value: this.pop(),
+          done
+        }
   }
 
   [Symbol.iterator] () {

@@ -10,6 +10,7 @@ const size = 16
 const s = new Seeq(size)
 const sl = new SeeqLinked(size)
 
+/* eslint-disable */
 suite
   .add('Array.prototype.splice + Array.prototype[Symbol.iterator]', function array () {
     const a = []

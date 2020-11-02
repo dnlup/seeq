@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "standard --fix | snazzy",
     "test": "echo \"Error: no test specified\" && exit 1",
     "bench": "node bench.js > bench.txt && cat bench.txt"
   },
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/dnlup/seeq#readme",
   "devDependencies": {
-    "benchmark": "^2.1.4"
+    "benchmark": "^2.1.4",
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.1",
+    "tap": "^14.10.8"
   }
 }

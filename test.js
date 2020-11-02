@@ -8,7 +8,7 @@ const s = new Seeq(size)
 
 let iteration = 1
 
-for (let i = 0; i< size; i++) {
+for (let i = 0; i < size; i++) {
   s.push(`${iteration}-${i}`)
 }
 
@@ -20,7 +20,7 @@ for (const item of s) {
 
 iteration++
 
-for (let i = 0; i< size; i++) {
+for (let i = 0; i < size; i++) {
   s.push(`${iteration}-${i}`)
 }
 
