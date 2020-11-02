@@ -5,9 +5,9 @@ const Seeq = require('./')
 
 const suite = new Benchmark.Suite()
 const size = 16
-
 const s = new Seeq(size)
 
+/* eslint-disable */
 suite
   .add('Array.prototype.splice + Array.prototype[Symbol.iterator]', function array () {
     const a = []
@@ -18,7 +18,7 @@ suite
     for (const item of b) {
     }
   })
-  .add('Seeq.prototype[Symbol.iterator]', function seeq () {
+  .add('Seeq.prototype[Symbol.iterator]', function sique () {
     for (let i = 0; i < size; i++) {
       s.push(i)
     }

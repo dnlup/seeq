@@ -1,56 +1,76 @@
 'use strict'
 
 const {
-  kStart,
-  kEnd,
+  kHead,
+  kReadCursor,
+  kWriteCursor,
+  kOverflowed,
   kSize,
-  kQueue
+  kPop
 } = require('./symbols')
+
+class Node {
+  constructor (id, value) {
+    this.id = id
+    this.value = value
+    this.next = null
+  }
+}
+
+function initCircularLinkedList (instance) {
+  let last = instance[kHead]
+  for (let i = 1; i < instance[kSize]; i++) {
+    const node = new Node(i, null)
+    last.next = node
+    last = node
+    if (i === instance[kSize] - 1) {
+      node.next = instance[kHead]
+    }
+  }
+}
 
 class Seeq {
   constructor (size) {
-    this[kStart] = 0
-    this[kEnd] = 0
+    this[kHead] = new Node(0, null)
+    this[kReadCursor] = this[kHead]
+    this[kWriteCursor] = this[kHead]
+    this[kOverflowed] = false
     this[kSize] = size
-    this[kQueue] = []
+    initCircularLinkedList(this)
   }
 
   get size () {
     return this[kSize]
   }
 
-  get start () {
-    return this[kStart]
+  push (value) {
+    this[kOverflowed] = this[kWriteCursor].next === this[kReadCursor]
+    this[kWriteCursor].value = value
+    this[kWriteCursor] = this[kWriteCursor].next
   }
 
-  get end () {
-    return this[kEnd]
-  }
-
-  push (item) {
-    if (this[kEnd] === this[kSize]) {
-      this[kEnd] = 0
-    }
-    this[kQueue][this[kEnd]] = item
-    return this[kEnd]++
-  }
-
-  pop () {
-    if (this[kStart] === this[kSize]) {
-      this[kStart] = 0
-    } else if (this[kStart] === this[kEnd]) {
-      return
-    }
-    const value = this[kQueue][this[kStart]]
-    this[kQueue][this[kStart]] = null
-    this[kStart]++
+  [kPop] () {
+    this[kOverflowed] = false
+    const value = this[kReadCursor].value
+    this[kReadCursor] = this[kReadCursor].next
     return value
   }
 
+  get done () {
+    return this[kReadCursor] === this[kWriteCursor] && this[kOverflowed] === false
+  }
+
+  pop () {
+    if (this.done) {
+      return
+    }
+    return this[kPop]()
+  }
+
   next () {
-    const done = this[kStart] === this[kEnd]
-    return done ? { done } : {
-      value: this.pop(),
+    const done = this.done
+    return {
+      value: done ? undefined : this[kPop](),
       done
     }
   }
