@@ -1,8 +1,10 @@
 'use strict'
 
 module.exports = {
-  kStart: Symbol('kStart'),
-  kEnd: Symbol('kEnd'),
+  kHead: Symbol('kHead'),
+  kReadCursor: Symbol('kReadCursor'),
+  kWriteCursor: Symbol('kWriteCursor'),
+  kOverflowed: Symbol('kOverflowed'),
   kSize: Symbol('kSize'),
-  kQueue: Symbol('kQueue')
+  kPop: Symbol('kPop')
 }

@@ -2,13 +2,10 @@
 
 const Benchmark = require('benchmark')
 const Seeq = require('./')
-const SeeqLinked = require('./linked')
 
 const suite = new Benchmark.Suite()
 const size = 16
-
 const s = new Seeq(size)
-const sl = new SeeqLinked(size)
 
 /* eslint-disable */
 suite
@@ -27,14 +24,6 @@ suite
     }
     const i = s.pop()
     for (const item of s) {
-    }
-  })
-  .add('SeeqLinked.prototype[Symbol.iterator]', function seeqLinked () {
-    for (let i = 0; i < size; i++) {
-      sl.push(i)
-    }
-    const i = sl.pop()
-    for (const item of sl) {
     }
   })
   .on('cycle', event => console.log(String(event.target)))
