@@ -61,6 +61,7 @@ class Seeq {
   }
 
   [kPop] () {
+    this[kOverflowed] = false
     const value = this[kReadCursor].value
     this[kReadCursor] = this[kReadCursor].next
     return value
@@ -74,12 +75,10 @@ class Seeq {
     if (this.done) {
       return
     }
-    this[kOverflowed] = false
     return this[kPop]()
   }
 
   next () {
-    this[kOverflowed] = false
     const done = this.done
     return {
       value: done? undefined : this[kPop](),
