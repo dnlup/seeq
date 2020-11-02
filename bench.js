@@ -19,6 +19,7 @@ suite
     }
   })
   .add('Seeq.prototype[Symbol.iterator]', function sique () {
+    const a = [] // this is here just to normalize the operations with the prevoius bench
     for (let i = 0; i < size; i++) {
       s.push(i)
     }

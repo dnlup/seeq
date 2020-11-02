@@ -44,9 +44,11 @@ class Seeq {
   }
 
   push (value) {
+    const index = this[kWriteCursor].id
     this[kOverflowed] = this[kWriteCursor].next === this[kReadCursor]
     this[kWriteCursor].value = value
     this[kWriteCursor] = this[kWriteCursor].next
+    return index
   }
 
   [kPop] () {
