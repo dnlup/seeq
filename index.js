@@ -58,15 +58,19 @@ class Seeq {
     return value
   }
 
-  get done () {
-    return this[kReadCursor] === this[kWriteCursor] && this[kOverflowed] === false
-  }
-
   pop () {
     if (this.done) {
       return
     }
     return this[kPop]()
+  }
+  
+  get current () {
+    return this[kReadCursor].value
+  }
+
+  get done () {
+    return this[kReadCursor] === this[kWriteCursor] && this[kOverflowed] === false
   }
 
   next () {

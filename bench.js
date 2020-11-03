@@ -6,6 +6,8 @@ const Seeq = require('./')
 const suite = new Benchmark.Suite()
 const size = 16
 const s = new Seeq(size)
+const list = [ 1, 2, 3 ]
+const listIdx = 1
 
 /* eslint-disable */
 suite
@@ -26,6 +28,12 @@ suite
     const i = s.pop()
     for (const item of s) {
     }
+  })
+  .add('Array access', function arrayAccess () {
+    const i = list[listIdx]
+  })
+  .add('Seeq access', function seeqAccess () {
+    const i = s.current
   })
   .on('cycle', event => console.log(String(event.target)))
   .run()
